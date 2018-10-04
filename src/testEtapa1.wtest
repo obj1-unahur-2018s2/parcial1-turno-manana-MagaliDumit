@@ -1,0 +1,94 @@
+import universidad.*
+import profesionales.*
+import empresaDeServicios.*
+
+	
+	
+	
+test "Universidades" {
+	const sanMartin = new Universidades()
+	sanMartin.setProvinciaRecomendados("Buenos Aires")
+	sanMartin.setHonorariosRecomendados(3500)
+	assert.equals( 3500 , sanMartin.honorariosRecomendados())
+	assert.equals("Buenos Aires", sanMartin.provinciaRecomendados() )
+    
+	const rosario = new Universidades()
+	rosario.setProvinciaRecomendados("Santa Fe")
+	rosario.setHonorariosRecomendados(2800)
+	assert.equals( 2800 , rosario.honorariosRecomendados())
+	assert.equals("Santa Fe", rosario.provinciaRecomendados() )
+	
+/*	const juana = new ProfesionalVinculado()
+	juana.setUniversidad(rosario)
+	assert.equals(rosario, juana.universidad())
+	juana.provinciasDondePuedeTrabajar("Santa Fe")
+	juana.setHonorariosPorHora(rosario) 
+	assert.equals(2800,juana.honorariosPorHora())
+	assert.equals("Santa Fe", juana.provinciasDondePuedeTrabajar())
+	assert.equals("Rosario", juana.universidad() )*/	
+	
+	
+	const corrientes = new Universidades()
+	corrientes.setProvinciaRecomendados("Corrientes")
+	corrientes.setHonorariosRecomendados(4200)
+	assert.equals( 4200 , corrientes.honorariosRecomendados ())
+	assert.equals("Corrientes", corrientes.provinciaRecomendados() )
+
+
+	const luciana = new ProfesionalLibre()
+	luciana.setUniversidad("Rosario")
+	luciana.setProvinciasDondePuedeTrabajar(#{"Entre Ríos", "Santa Fe"})
+	luciana.setHonorariosPorHora(3200)
+	assert.equals(3200 , luciana.honorariosPorHora() )
+	assert.equals(#{"Entre Ríos","Santa Fe"}, luciana.provinciasDondePuedeTrabajar())
+	assert.equals("Rosario" , luciana.universidad())
+	
+	const melina = new ProfesionalAsociado()
+	melina.universidad("Corrientes")
+	melina.provinciasDondePuedeTrabajar(#{"Entre Ríos", "Santa Fe", "Corrientes"})
+	melina.setHonorariosPorHora(3200)
+	assert.equals(3200 , melina.honorariosPorHora() )
+	
+	assert.equals(#{"Entre Ríos", "Santa Fe", "Corrientes"}, melina.provinciasDondePuedeTrabajar())
+	assert.equals("Corrientes" , melina.univercidad())
+	
+	
+	const hurlingham = new Universidades()
+	hurlingham.setProvinciaRecomendados("Buenos Aires")
+	hurlingham.setHonorariosRecomendados(8800)
+	assert.equals( 8800 , hurlingham.honorariosRecomendados())
+	assert.equals("Buenos Aires", hurlingham.provinciaRecomendados() )
+	
+    const rocio = new ProfesionalLibre() {
+    rocio.univercidad("Hurlingham")
+	rocio.provinciasDondePuedeTrabajar(#{"Cordoba","Buenos Aires", "Santa Fe"})
+	rocio.honorariosPorHora(5000)
+	assert.equals(5000 , rocio.honorariosPorHora() )
+	assert.equals(#{"Cordoba","Buenos Aires", "Santa Fe"}, rocio.provinciasDondePuedeTrabajar())
+	
+	assert.equals("Hurlingham" , rocio.univercidad())
+	
+	
+	const empresa = new Empresa()
+	empresa.setHonorariosReferencia(3500)
+	empresa.profesionalesCaros()
+	empresa.masBarato()
+	empresa.universidadesFormadoras()
+	empresa.provinciaEstaCubierta() 
+	assert.equals( rocio , empresa.profesionalesCaros() )
+	assert.equals( juana,empresa.masBarato() )
+	assert.equals( #{ rosario , corrientes , hurlingham },empresa.universidadesFormadoras())
+	assert.equals(#{"Santa Fe","Cordoba"},empresa.provinciaEstaCubierta()  )
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+    }
+}
